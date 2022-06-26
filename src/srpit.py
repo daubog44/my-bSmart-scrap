@@ -87,7 +87,7 @@ def click_mode_single_page():
     sleep(0.5)
     move_to_coordinates_from_image(
         './find_buttons/one_page_mode.png', [10, 10])
-    pyautogui.click()
+    pyautogui.doubleClick()
 
 
 def get_screenshot(n: int, ia=False):
