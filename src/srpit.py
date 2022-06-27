@@ -105,7 +105,6 @@ def get_screenshot(n: int, ia=False, first=True):
     img3.show()
     #img3 = pyautogui.screenshot(region=(55, 412, 1705, 605))
     combine_multuple_screenshots_into_one([img1, img2, img3], n)
-    return
     if ia:
         image_file = Image.open(path)
         model = MsrnModel.from_pretrained('eugenesiow/msrn', scale=4)
