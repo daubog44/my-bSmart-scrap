@@ -59,7 +59,7 @@ def find_code_window():
 
 def get_pages():
     sleep(0.5)
-    move_to_coordinates_from_image('./find_buttons/e-book.png', [780, 200])
+    move_to_coordinates_from_image('./find_buttons/e-book.png', [780, 210])
     pyautogui.click()
     pyautogui.moveTo(647, 471, duration=1, tween=pyautogui.easeInOutQuad)
     pyautogui.doubleClick()
