@@ -7,7 +7,6 @@ import sys
 def convert_e_book_to_pdf():
     listFileNamesLen = len(os.listdir('screen_shots'))
     pdfFile = open("out.pdf", "wb")
-    print(listFileNamesLen)
 
     with open("out.pdf", "wb") as f:
         f.write(img2pdf.convert(

@@ -37,7 +37,6 @@ def move_b_smart():
             codeWindow = win
             break
     win = gw.getWindowsWithTitle(codeWindow)[0]
-    print(codeWindow)
     win.activate()
     sleep(1)
 
@@ -55,33 +54,6 @@ def find_code_window():
             codeWindow = win
             break
     return codeWindow
-
-
-def get_pages():
-    sleep(0.5)
-    move_to_coordinates_from_image('./find_buttons/e-book.png', [780, 210])
-    pyautogui.click()
-    pyautogui.moveTo(647, 471, duration=1, tween=pyautogui.easeInOutQuad)
-    pyautogui.doubleClick()
-    pyautogui.hotkey('ctrl', 'c')
-
-
-def write_pages_on_file():
-    sleep(0.5)
-    move_to_coordinates_from_image('./find_buttons/find_txt.png')
-    pyautogui.click()
-    pyautogui.moveTo(1000, 170, duration=1, tween=pyautogui.easeInOutQuad)
-    pyautogui.click()
-    for i in range(40):
-        pyautogui.press('backspace')
-    pyautogui.hotkey('ctrl', 'v')
-
-
-def close_popup():
-    sleep(0.5)
-    move_to_coordinates_from_image('./find_buttons/find_close_pupup.png')
-    pyautogui.click()
-
 
 def click_e_book():
     sleep(0.5)
@@ -105,7 +77,6 @@ def click_mode_single_page():
 
 def get_screenshot(n: int, ia=False, first=True):
     if first:
-        print("first")
         click_maximaze()
         move_to_coordinates_from_image(
             './find_buttons/next_page_button1.png', [-10, -100])
@@ -144,11 +115,3 @@ def click_next_page(first=True):
         move_to_coordinates_from_image(
             './find_buttons/next_page_button1.png', [0, 0])
         pyautogui.click()
-
-
-def main():
-    move_b_smart()
-    get_pages()
-    move_to_code()
-    write_pages_on_file()
-    sleep(1)
