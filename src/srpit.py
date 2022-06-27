@@ -92,7 +92,7 @@ def click_e_book():
 def click_maximaze():
     sleep(0.5)
     move_to_coordinates_from_image(
-        './find_buttons/maximaze_win_button.png', [10, 10])
+        './find_buttons/maximaze_win_button.png', [50, 50])
     pyautogui.click()
 
 
@@ -111,7 +111,7 @@ def get_screenshot(n: int, ia=False, first=True):
             './find_buttons/next_page_button1.png', [-10, -100])
     else:
         move_to_coordinates_from_image(
-            './find_buttons/minimaze_win_nutton.png', [10, 10])
+            './find_buttons/minimaze_win_nutton.png', [55, 55])
         pyautogui.click()
         sleep(0.5)
         click_maximaze()

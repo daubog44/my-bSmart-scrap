@@ -13,7 +13,7 @@ def get_pages_from_file():
 
 def bot_screenshots_reapet():
     pages = get_pages_from_file()
-    for i in range(0, int(pages)):
+    for i in range(0, int(pages-1)):
         if i == 0:
             print(i)
             get_screenshot(i)
