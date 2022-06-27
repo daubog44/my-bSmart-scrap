@@ -14,7 +14,11 @@ def get_pages_from_file():
 def bot_screenshots_reapet():
     pages = get_pages_from_file()
     for i in range(0, int(pages)):
-        get_screenshot(i)
+        if i == 0:
+            print(i)
+            get_screenshot(i)
+        else:
+            get_screenshot(i, False, False)
         click_next_page()
         sleep(1.5)
 
@@ -25,7 +29,6 @@ def start_bot():
     move_b_smart()
     close_popup()
     click_e_book()
-    click_maximaze()
     click_mode_single_page()
     bot_screenshots_reapet()
     convert_e_book_to_pdf()
