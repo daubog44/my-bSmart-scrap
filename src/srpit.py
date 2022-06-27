@@ -55,9 +55,10 @@ def find_code_window():
             break
     return codeWindow
 
+
 def click_e_book():
     sleep(0.5)
-    move_to_coordinates_from_image('./find_buttons/e-book.png', [20, 20])
+    move_to_coordinates_from_image('./find_buttons/e-book2.png', [20, 20])
     pyautogui.click()
 
 
@@ -94,10 +95,17 @@ def get_screenshot(n: int, ia=False, first=True):
     img1 = pyautogui.screenshot(region=(55, 115, 1705, 905))
     pyautogui.scroll(-868)
     img2 = pyautogui.screenshot(region=(55, 115, 1705, 905))
+    offsetLineImage = pyautogui.screenshot(region=(55, 1000, 1705, 20))
     pyautogui.scroll(-868)
-    img3 = pyautogui.screenshot(region=(55, 412, 1705, 605))
+    information = pyautogui.locateOnScreen(offsetLineImage, confidence=0.99)
+    print(information)
+    img3 = pyautogui.screenshot(
+        region=(55, information[1]+information[3], 1705, 905-information[1]+information[3]*5-5))
+    img2.show()
+    img3.show()
+    #img3 = pyautogui.screenshot(region=(55, 412, 1705, 605))
     combine_multuple_screenshots_into_one([img1, img2, img3], n)
-
+    return
     if ia:
         image_file = Image.open(path)
         model = MsrnModel.from_pretrained('eugenesiow/msrn', scale=4)

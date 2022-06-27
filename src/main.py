@@ -30,6 +30,7 @@ def start_bot():
     print("BEFORE STARTING BOT you should have taken the screenshot of the cover of the e-book you want to select and placed it in the find-buttons folder")
     move_b_smart()
     click_e_book()
+    sleep(3)
     click_mode_single_page()
     bot_screenshots_reapet()
     convert_e_book_to_pdf()
