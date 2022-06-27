@@ -58,7 +58,7 @@ def find_code_window():
 
 def click_e_book():
     sleep(0.5)
-    move_to_coordinates_from_image('./find_buttons/e-book2.png', [20, 20])
+    move_to_coordinates_from_image('./find_buttons/e-book.png', [20, 20])
     pyautogui.click()
 
 
