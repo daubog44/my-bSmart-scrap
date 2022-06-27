@@ -101,9 +101,6 @@ def get_screenshot(n: int, ia=False, first=True):
     print(information)
     img3 = pyautogui.screenshot(
         region=(55, information[1]+information[3], 1705, 905-information[1]+information[3]*5-5))
-    img2.show()
-    img3.show()
-    #img3 = pyautogui.screenshot(region=(55, 412, 1705, 605))
     combine_multuple_screenshots_into_one([img1, img2, img3], n)
     if ia:
         image_file = Image.open(path)
