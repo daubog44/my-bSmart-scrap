@@ -5,7 +5,6 @@ from time import sleep
 import traceback
 import os
 
-
 def bot_screenshots_reapet():
     for i in range(0, 10000):
         try:

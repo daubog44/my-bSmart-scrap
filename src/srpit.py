@@ -7,7 +7,6 @@ from super_image import MsrnModel, ImageLoader
 import os
 import traceback
 from global_variables import OFFSET_IMAGE
-print(OFFSET_IMAGE)
 
 
 def combine_multuple_screenshots_into_one(images, n):
