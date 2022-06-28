@@ -6,13 +6,6 @@ import traceback
 import os
 
 
-def get_pages_from_file():
-    lines = 0
-    with open("out.txt", "r") as f:
-        lines = f.readlines()
-    return lines[0]
-
-
 def bot_screenshots_reapet():
     for i in range(0, 10000):
         try:
