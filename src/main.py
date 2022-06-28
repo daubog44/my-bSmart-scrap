@@ -3,6 +3,7 @@ import pyautogui
 from PDFMaker import convert_e_book_to_pdf
 from time import sleep
 import traceback
+import os
 
 
 def get_pages_from_file():
@@ -31,7 +32,11 @@ def bot_screenshots_reapet():
 
 
 def start_bot():
-    print("bot scraping for e-books on my-bsmart platform. To boot, install the requirements, open my-bsmart and take a screenshot of the e-book cover and put it in find_buttons folder as e-book.png then start the bot of main script. The output is the pdf of the e-book")
+    e_book = [file.split(".")[0] for file in os.listdir(
+        os.path.join(os.getcwd(), "find_buttons"))]
+    if not "e-book" in e_book:
+        print("bot scraping for e-books on my-bsmart platform. To boot, install the requirements, open my-bsmart and take a screenshot of the e-book cover and put it in find_buttons folder as e-book.png then start the bot of main script. The output is the pdf of the e-book")
+        return
     move_b_smart()
     click_e_book()
     click_mode_single_page()
