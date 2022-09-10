@@ -196,8 +196,11 @@ def get_each_screenshot(position, scroll=False):
 
 def get_all_3_screenshots(n, first=False):
     global OFFSET_IMAGE, ERRORS
+    bbox_of_blank_page = (50, 85, 1690, 1024-250)
     img1, img2, img3 = 0, 0, 0
+
     try:
+        OFFSET_IMAGE = 50
         if check_if_is_blank_page():
             return "continue"
         img1 = get_each_screenshot((0, 115, 1815, 905))
@@ -217,9 +220,15 @@ def get_all_3_screenshots(n, first=False):
             offsetLineImage_for_two.save("./find_buttons/offset.png")
             return get_2_screens(img1, offsetLineImage_for_two)
         img2 = clear_from_buttons(img2)
+
+        if check_if_is_blank_page(bbox_of_blank_page):
+            pyautogui.scroll(-868)
+            img3 = get_each_screenshot((0, 115, 1815, 905))
+            img3 = clear_from_buttons(img3)
+            return [img1, img3]
+
         pyautogui.scroll(-868)
 
-        bbox_of_blank_page = (50, 85, 1690, 1024-250)
         if check_if_is_blank_page(bbox_of_blank_page):
             if n == 0:
                 return "continue"
@@ -235,6 +244,12 @@ def get_all_3_screenshots(n, first=False):
             offsetLineImage, confidence=0.99)
         offsetLineImage.save("./find_buttons/offset.png")
         img3, offset_height = get_screenshot_with_offset(information)
+        if offset_height == "error":
+            width, height = Image.open(f"./screen_shots/screen-{n-1}.jpg").size
+            diff = abs(height - (img1.size[1] + img2.size[1] + img3.size[1]))
+            img3 = clear_from_buttons(img3)
+            img3 = remove_part_of_image(img3, diff)
+            return [img1, img2, img3]
         img3 = clear_from_buttons(img3, offset_height)
 
         if img1 == None or img2 == None or img3 == None:
@@ -270,8 +285,12 @@ def get_all_3_screenshots(n, first=False):
 
 def get_screenshot_with_offset(offset=None, times=0):
     global OFFSET_IMAGE
-    offset_aument = 0
     img = None
+    if times >= 8:
+        OFFSET_IMAGE -= 30 * 8
+        img = get_each_screenshot((0, 115, 1815, 905))
+        return (img, "error")
+
     try:
         if times > 0 or offset == None:
             pyautogui.scroll(1736)
@@ -288,7 +307,6 @@ def get_screenshot_with_offset(offset=None, times=0):
         img = get_each_screenshot((0, offset[1]+offset[3], 1815, h))
         return (img, offset[3])
     except TypeError:
-        offset_aument += 30
         OFFSET_IMAGE += 30
         img, offset_height = get_screenshot_with_offset(offset, times=1+times)
         return (img, offset_height)
@@ -321,6 +339,11 @@ def remove_image(im):
     return Image.new(mode="RGB", size=(width, height), color=(rgb[0], rgb[1], rgb[2]))
 
 
+def remove_part_of_image(im, h):
+    crop_image = im.crop((0, 0+h, im.size[0], (im.size[1])))
+    return crop_image
+
+
 def get_screenshot(n: int, first=False, reapet=1):
     global OFFSET_IMAGE
     if reapet == 10:
@@ -329,7 +352,8 @@ def get_screenshot(n: int, first=False, reapet=1):
     initialize_get_screenshot(first)
     images = get_all_3_screenshots(n, first)
     if len(images) == 2:
-        return combine_multuple_screenshots_into_one(images, n)
+        combine_multuple_screenshots_into_one(images, n)
+        return "success"
     if images == "error":
         print("Error in get_screenshot", images)
         pyautogui.scroll(1736)
