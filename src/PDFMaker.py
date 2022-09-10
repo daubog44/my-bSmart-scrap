@@ -17,6 +17,3 @@ def convert_e_book_to_pdf():
         print("PDF created")
         for f in a:
             os.remove(f)
-
-
-convert_e_book_to_pdf()

@@ -1,4 +1,4 @@
-from src.script import move_b_smart, move_to_code, click_e_book, click_maximaze, click_mode_single_page, get_screenshot, click_next_page, move_to_coordinates_from_image
+from src.bsmart_script import move_b_smart, move_to_code, click_e_book, click_maximaze, click_mode_single_page, get_screenshot, click_next_page, move_to_coordinates_from_image
 import pyautogui
 from src.PDFMaker import convert_e_book_to_pdf
 from time import sleep
